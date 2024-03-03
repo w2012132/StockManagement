@@ -18,9 +18,15 @@ namespace StockManagementAPI
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
             builder.Services.AddDbContext<SM_DBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("LocalConnectionString")));
-            builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-.AddEntityFrameworkStores<SM_DBContext>().AddDefaultTokenProviders();
+            builder.Services.AddAuthorization();
+            builder.Services.AddIdentityApiEndpoints<IdentityUser>().AddEntityFrameworkStores<SM_DBContext>();
+
+
+
+//            builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+//.AddEntityFrameworkStores<SM_DBContext>().AddDefaultTokenProviders();
             
             var app = builder.Build();
 
@@ -30,8 +36,10 @@ namespace StockManagementAPI
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.MapIdentityApi<IdentityUser>();
             app.UseHttpsRedirection();
+
+            //app.MapGroup("/identity").MapIdentityApi<IdentityUser>();
 
             app.UseAuthorization();
 
