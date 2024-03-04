@@ -12,8 +12,14 @@ namespace StockManagementAPI.Database
         {
         }
 
-        //public DbSet<Product> Products { get; set; }
-        //public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Dispatch> Dispatches { get; set; }
+        public DbSet<DispatchDetail> DispatchDetails { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<Stock> Stocks { get; set; }
+        public DbSet<StockTransaction> StockTransactions { get; set; }
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
