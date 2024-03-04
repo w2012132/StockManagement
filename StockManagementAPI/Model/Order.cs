@@ -1,7 +1,12 @@
-﻿namespace StockManagementAPI.Model
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace StockManagementAPI.Model
 {
+    [Table("Order")]
     public class Order
     {
+        [Key]
         public Guid OrderNo { get; set; }
         public DateTime OrderDate { get; set; }
         public string Status { get; set; }

@@ -1,9 +1,13 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace StockManagementAPI.Model
 {
+    [Table("Dispatch")]
     public class Dispatch
     {
+        [Key]
         public Guid DispatchId { get; set; }
         public Guid OrderNo { get; set; } // Foreign key reference to Order
         public DateTime DispatchDate { get; set; }
@@ -16,10 +20,10 @@ namespace StockManagementAPI.Model
 
         // Navigation property to Order
         [JsonIgnore]
-        public virtual Order Order { get; set; }
+        public virtual Order? Order { get; set; }
 
         // Collection navigation property to DispatchDetails
         [JsonIgnore]
-        public virtual ICollection<DispatchDetail> DispatchDetails { get; set; } = new List<DispatchDetail>();
+        public virtual ICollection<DispatchDetail>? DispatchDetails { get; set; } = new List<DispatchDetail>();
     }
 }

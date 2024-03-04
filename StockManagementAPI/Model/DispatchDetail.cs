@@ -1,9 +1,13 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace StockManagementAPI.Model
 {
+    [Table("DispatchDetail")]
     public class DispatchDetail
     {
+        [Key]
         public long DispatchDetailID { get; set; }
         public Guid DispatchId { get; set; } // Foreign key reference to Dispatch
         public long OrderDetailsId { get; set; } // Foreign key reference to OrderDetail
@@ -16,8 +20,8 @@ namespace StockManagementAPI.Model
 
         // Navigation properties
         [JsonIgnore]
-        public virtual Dispatch Dispatch { get; set; }
+        public virtual Dispatch? Dispatch { get; set; }
         [JsonIgnore]
-        public virtual OrderDetail OrderDetail { get; set; }
+        public virtual OrderDetail? OrderDetail { get; set; }
     }
 }

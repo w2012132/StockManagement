@@ -1,9 +1,13 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace StockManagementAPI.Model
 {
+    [Table("Category")]
     public class Category
     {
+        [Key]
         public Guid CategoryId { get; set; }
         public string CategoryName { get; set; }
         public Guid? ParentCategoryId { get; set; } // Nullable for top-level categories
@@ -15,8 +19,8 @@ namespace StockManagementAPI.Model
 
         // Navigation property for parent-child relationship (self-referencing)
         [JsonIgnore]
-        public virtual Category ParentCategory { get; set; }
+        public virtual Category? ParentCategory { get; set; }
         [JsonIgnore]
-        public virtual ICollection<Category> SubCategories { get; set; } = new List<Category>();
+        public virtual ICollection<Category>? SubCategories { get; set; } = new List<Category>();
     }
 }
