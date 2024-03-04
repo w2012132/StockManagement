@@ -266,3 +266,7 @@ E:\Westminster\Web_Application\stock management new\StockManagement\StockManagem
 E:\Westminster\Web_Application\stock management new\StockManagement\StockManagementAPI\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 E:\Westminster\Web_Application\stock management new\StockManagement\StockManagementAPI\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 E:\Westminster\Web_Application\stock management new\StockManagement\StockManagementAPI\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
+E:\Westminster\Web_Application\stock management new\StockManagement\StockManagementAPI\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+E:\Westminster\Web_Application\stock management new\StockManagement\StockManagementAPI\bin\Debug\net8.0\MailKit.dll
+E:\Westminster\Web_Application\stock management new\StockManagement\StockManagementAPI\bin\Debug\net8.0\MimeKit.dll
+E:\Westminster\Web_Application\stock management new\StockManagement\StockManagementAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
