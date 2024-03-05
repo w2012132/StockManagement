@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,8 @@ using StockManagementAPI.Model;
 
 namespace StockManagementAPI.Controllers
 {
+    [Authorize]
+
     [Route("api/[controller]")]
     [ApiController]
     public class DispatchDetailsController : ControllerBase
@@ -44,7 +47,7 @@ namespace StockManagementAPI.Controllers
         }
 
         // PUT: api/DispatchDetails/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDispatchDetail(long id, DispatchDetail dispatchDetail)
         {
@@ -75,7 +78,7 @@ namespace StockManagementAPI.Controllers
         }
 
         // POST: api/DispatchDetails
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
         [HttpPost]
         public async Task<ActionResult<DispatchDetail>> PostDispatchDetail(DispatchDetail dispatchDetail)
         {
@@ -97,6 +100,7 @@ namespace StockManagementAPI.Controllers
 
             _context.DispatchDetails.Remove(dispatchDetail);
             await _context.SaveChangesAsync();
+            _logger.LogInformation($"Dispatch details deleted. Id {id}");
 
             return NoContent();
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,8 @@ using StockManagementAPI.Model;
 
 namespace StockManagementAPI.Controllers
 {
+    [Authorize]
+
     [Route("api/[controller]")]
     [ApiController]
     public class DispatchesController : ControllerBase
@@ -81,6 +84,7 @@ namespace StockManagementAPI.Controllers
         {
             _context.Dispatches.Add(dispatch);
             await _context.SaveChangesAsync();
+            _logger.LogInformation($"Dispatch added. Id {dispatch.DispatchId}");
 
             return CreatedAtAction("GetDispatch", new { id = dispatch.DispatchId }, dispatch);
         }
@@ -97,6 +101,7 @@ namespace StockManagementAPI.Controllers
 
             _context.Dispatches.Remove(dispatch);
             await _context.SaveChangesAsync();
+            _logger.LogInformation($"Dispatch deleted. Id {id}");
 
             return NoContent();
         }

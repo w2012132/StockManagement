@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,8 @@ using StockManagementAPI.Model;
 
 namespace StockManagementAPI.Controllers
 {
+    [Authorize]
+
     [Route("api/[controller]")]
     [ApiController]
     public class OrdersController : ControllerBase
@@ -81,6 +84,7 @@ namespace StockManagementAPI.Controllers
         {
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
+            _logger.LogInformation($"Order added. Id {order.OrderNo}");
 
             return CreatedAtAction("GetOrder", new { id = order.OrderNo }, order);
         }
@@ -97,6 +101,7 @@ namespace StockManagementAPI.Controllers
 
             _context.Orders.Remove(order);
             await _context.SaveChangesAsync();
+            _logger.LogInformation($"Order deleted. Id {id}");
 
             return NoContent();
         }

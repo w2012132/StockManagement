@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,8 @@ using StockManagementAPI.Model;
 
 namespace StockManagementAPI.Controllers
 {
+    [Authorize]
+
     [Route("api/[controller]")]
     [ApiController]
     public class OrderDetailsController : ControllerBase
@@ -97,6 +100,7 @@ namespace StockManagementAPI.Controllers
 
             _context.OrderDetails.Remove(orderDetail);
             await _context.SaveChangesAsync();
+            _logger.LogInformation($"Order Details deleted. Id {id}");
 
             return NoContent();
         }

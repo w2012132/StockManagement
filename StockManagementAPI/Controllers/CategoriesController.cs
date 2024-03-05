@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using StockManagementAPI.Model;
 
 namespace StockManagementAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoriesController : ControllerBase
@@ -81,7 +83,7 @@ namespace StockManagementAPI.Controllers
         {
             _context.Categories.Add(category);
             await _context.SaveChangesAsync();
-
+            _logger.LogInformation($"Category added. Id {category.CategoryId}");
             return CreatedAtAction("GetCategory", new { id = category.CategoryId }, category);
         }
 
@@ -97,6 +99,7 @@ namespace StockManagementAPI.Controllers
 
             _context.Categories.Remove(category);
             await _context.SaveChangesAsync();
+            _logger.LogInformation($"Category deleted. Id {id}");
 
             return NoContent();
         }

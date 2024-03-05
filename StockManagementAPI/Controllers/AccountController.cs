@@ -151,7 +151,7 @@ namespace StockManagementAPI.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpPost("assignRole")]
+        [HttpPost("assignRole/{email}/{roleName}")]
         public async Task<IActionResult> AssignRoleToUser(string email, string roleName)
         {
             var user = await _userManager.FindByEmailAsync(email);
@@ -175,7 +175,6 @@ namespace StockManagementAPI.Controllers
             _logger.LogError("error found when assigning role");
             return BadRequest(result.Errors);
         }
-
 
         public async Task<List<Claim>> GetUserClaims(IdentityUser user)
         {

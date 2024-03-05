@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,8 @@ using StockManagementAPI.Model;
 
 namespace StockManagementAPI.Controllers
 {
+    [Authorize]
+
     [Route("api/[controller]")]
     [ApiController]
     public class StockTransactionsController : ControllerBase
@@ -37,6 +40,8 @@ namespace StockManagementAPI.Controllers
 
             if (stockTransaction == null)
             {
+                _logger.LogError("Stock Transaction not found");
+
                 return NotFound();
             }
 
@@ -44,7 +49,6 @@ namespace StockManagementAPI.Controllers
         }
 
         // PUT: api/StockTransactions/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutStockTransaction(long id, StockTransaction stockTransaction)
         {
@@ -75,12 +79,13 @@ namespace StockManagementAPI.Controllers
         }
 
         // POST: api/StockTransactions
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
         [HttpPost]
         public async Task<ActionResult<StockTransaction>> PostStockTransaction(StockTransaction stockTransaction)
         {
             _context.StockTransactions.Add(stockTransaction);
             await _context.SaveChangesAsync();
+            _logger.LogInformation($"Stock Transaction added. Id {stockTransaction.StockTransactionId}");
 
             return CreatedAtAction("GetStockTransaction", new { id = stockTransaction.StockTransactionId }, stockTransaction);
         }
@@ -97,7 +102,7 @@ namespace StockManagementAPI.Controllers
 
             _context.StockTransactions.Remove(stockTransaction);
             await _context.SaveChangesAsync();
-
+            _logger.LogInformation($"Stock Transaction deleted. Id {id}");
             return NoContent();
         }
 

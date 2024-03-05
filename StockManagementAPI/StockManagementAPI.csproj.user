@@ -11,6 +11,6 @@
     <WebStackScaffolding_LayoutPageFile />
     <WebStackScaffolding_DbContextTypeFullName>StockManagementAPI.Database.SM_DBContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
-    <NameOfLastUsedPublishProfile>E:\Westminster\Web_Application\stock management new\StockManagement\StockManagementAPI\Properties\PublishProfiles\sms-uow - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>E:\Westminster\Web_Application\stock management new\StockManagement\StockManagementAPI\Properties\PublishProfiles\StockManagementAPI20240305011108 - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>
