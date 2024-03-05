@@ -15,10 +15,11 @@ namespace StockManagementAPI.Controllers
     public class DispatchesController : ControllerBase
     {
         private readonly SM_DBContext _context;
-
-        public DispatchesController(SM_DBContext context)
+        private readonly ILogger<DispatchesController> _logger;
+        public DispatchesController(SM_DBContext context, ILogger<DispatchesController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: api/Dispatches

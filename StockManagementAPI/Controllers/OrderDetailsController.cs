@@ -15,10 +15,11 @@ namespace StockManagementAPI.Controllers
     public class OrderDetailsController : ControllerBase
     {
         private readonly SM_DBContext _context;
-
-        public OrderDetailsController(SM_DBContext context)
+        private readonly ILogger<OrderDetailsController> _logger;
+        public OrderDetailsController(SM_DBContext context, ILogger<OrderDetailsController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: api/OrderDetails

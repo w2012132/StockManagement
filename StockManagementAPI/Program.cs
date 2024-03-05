@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using StockManagementAPI.Database;
 using StockManagementAPI.Services;
@@ -37,15 +38,18 @@ namespace StockManagementAPI
     });
 
 
-            builder.Services.AddDbContext<SM_DBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("LocalConnectionString")));
+            builder.Services.AddDbContext<SM_DBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString")));
             builder.Services.AddAuthorization();
-            builder.Services.AddIdentityApiEndpoints<IdentityUser>().AddEntityFrameworkStores<SM_DBContext>();
+            //builder.Services.AddIdentityApiEndpoints<IdentityUser>().AddEntityFrameworkStores<SM_DBContext>();
             builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
             builder.Services.AddScoped<EmailService>();
 
 
-            //            builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-            //.AddEntityFrameworkStores<SM_DBContext>().AddDefaultTokenProviders();
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+.AddEntityFrameworkStores<SM_DBContext>().AddDefaultTokenProviders();
+
+            builder.Logging.ClearProviders();
+            builder.Logging.AddConsole();
 
             var app = builder.Build();
 

@@ -15,10 +15,11 @@ namespace StockManagementAPI.Controllers
     public class CategoriesController : ControllerBase
     {
         private readonly SM_DBContext _context;
-
-        public CategoriesController(SM_DBContext context)
+        private readonly ILogger<CategoriesController> _logger;
+        public CategoriesController(SM_DBContext context, ILogger<CategoriesController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: api/Categories

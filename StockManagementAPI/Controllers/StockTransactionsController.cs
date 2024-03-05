@@ -15,10 +15,11 @@ namespace StockManagementAPI.Controllers
     public class StockTransactionsController : ControllerBase
     {
         private readonly SM_DBContext _context;
-
-        public StockTransactionsController(SM_DBContext context)
+        private readonly ILogger<StockTransactionsController> _logger;
+        public StockTransactionsController(SM_DBContext context, ILogger<StockTransactionsController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: api/StockTransactions
